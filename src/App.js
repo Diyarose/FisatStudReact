@@ -1,24 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import AddStudfisat from './components/AddStudfisat';
+import SearchStudentfisat from './components/SearchStudentfisat';
+import DeleteStudentfisat from './components/DeleteStudentfisat';
+import ViewStudfisat from './components/ViewStudfisat';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <BrowserRouter>
+  <Routes>
+    <Route path='/' element={<AddStudfisat/>}/>
+    <Route path='/search' element={<SearchStudentfisat/>}/>
+    <Route path='/delete' element={<DeleteStudentfisat/>}/>
+    <Route path='/view' element={<ViewStudfisat/>}/>
+  </Routes>
+  </BrowserRouter>
   );
 }
 
