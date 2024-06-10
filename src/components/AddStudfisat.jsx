@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import NavBar from './NavBar'
+import axios from 'axios'
 
 const AddStudfisat = () => {
     const [data,setData]=useState(
@@ -19,6 +20,24 @@ const AddStudfisat = () => {
     }
     const readValue=()=>{
         console.log(data)
+        axios.post("https://courseapplogix.onrender.com/addstudents",data).then(
+            (response)=>{
+                console.log(response.data)
+                if(response.data.status=="success")
+                    {
+                        alert("Successfully added")
+                    }
+                    else{
+                        alert("Error")
+                    }
+            }
+        ).catch(
+            (error)=>{
+                console.log(error.message)
+                alert(error.message)
+            }
+        )
+
     }
   return (
     <div>
@@ -38,16 +57,19 @@ const AddStudfisat = () => {
                         </div>
                         <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                             <label htmlFor="" className="form-label">College</label>
-                            <textarea name="" id="" className="form-control" name='college'value={data.college} onChange={inputHandler}></textarea>
+                            <textarea  id="" className="form-control" name='college'value={data.college} onChange={inputHandler}></textarea>
                         </div>
                         <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                             <label htmlFor="" className="form-label">DOB</label>
-                            <input type="date" name="" id="" className="form-control" name='dob' value={data.dob} onChange={inputHandler}/>
+                            <input type="date" 
+                             id="" className="form-control" name='dob' value={data.dob} onChange={inputHandler}/>
                         </div>
                         <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                             <label htmlFor="" className="form-label">Course</label>
-                            <select name="" id="" className="form-control" name='course' value={data.course} onChange={inputHandler}>
+                            <select id="" className="form-control" name='course' value={data.course} onChange={inputHandler}>
+                                <option value="Courses">Courses</option>
                                 <option value="MCA">MCA</option>
+                                
                                 <option value="BTECH">BTECH</option>
                                 <option value="MBA">MBA</option>
                             </select>

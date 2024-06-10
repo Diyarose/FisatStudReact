@@ -5,11 +5,16 @@ import axios from 'axios'
 const ViewStudfisat = () => {
     const [data,changeData]=useState([])
     const fetchData=()=>{
-        axios.get("https://anishpdm.github.io/dummy-api-new/student.json").then(
+        axios.get("https://courseapplogix.onrender.com/getdata").then(
             (response)=>{
                 changeData(response.data)
             }
-        ).catch().finally()
+        ).catch(
+            (error)=>{
+                console.log(error.message)
+                alert(error.message)
+            }
+        ).finally()
     }
     useEffect(()=>{fetchData()},[])
     return (
@@ -25,6 +30,11 @@ const ViewStudfisat = () => {
                                     <th scope="col">LastName</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Mobile</th>
+                                    <th scope="col">DOB</th>
+                                    <th scope="col">College</th>
+                                    <th scope="col">Course</th>
+                                   
+                                    <th scope="col">Address</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,6 +45,10 @@ const ViewStudfisat = () => {
                                     <td>{value.lastname}</td>
                                     <td>{value.email}</td>
                                     <td>{value.mobile}</td>
+                                    <td>{value.dob}</td>
+                                    <td>{value.college}</td>
+                                    <td>{value.address}</td>
+                                    <td>{value.course}</td>
                                 </tr>
                                 }
                               )}
